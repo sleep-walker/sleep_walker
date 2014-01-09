@@ -13,7 +13,7 @@ SRC_URI="http://dl.suckless.org/${PN}/${P}.tar.gz"
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="amd64 ppc ppc64 x86 ~x86-fbsd"
-IUSE="xinerama"
+IUSE="xinerama systray"
 
 DEPEND="x11-libs/libX11
 	xinerama? (
@@ -21,8 +21,6 @@ DEPEND="x11-libs/libX11
 		x11-libs/libXinerama
 		)"
 RDEPEND="${DEPEND}"
-
-IUSE="systray"
 
 src_prepare() {
 	if use systray; then
