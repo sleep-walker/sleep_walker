@@ -22,8 +22,12 @@ DEPEND="x11-libs/libX11
 		)"
 RDEPEND="${DEPEND}"
 
+IUSE="systray"
+
 src_prepare() {
-	epatch "${FILESDIR}"/${P}-systray.diff
+	if use systray; then
+		epatch "${FILESDIR}"/${P}-systray.diff
+	fi
 	sed -i \
 		-e "s/CFLAGS = -std=c99 -pedantic -Wall -Os/CFLAGS += -std=c99 -pedantic -Wall/" \
 		-e "/^LDFLAGS/{s|=|+=|g;s|-s ||g}" \
