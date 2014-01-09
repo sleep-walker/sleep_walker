@@ -18,7 +18,7 @@ RDEPEND="|| (
 			>=dev-libs/eina-1.7.9
 			>=dev-libs/ecore-1.7.9
 		)
-		>=dev-libs/efl-1.8.0
+		( >=dev-libs/efl-1.8.0 )
 	)
 	sys-apps/dbus
 	connman? ( >=net-misc/connman-0.75 )

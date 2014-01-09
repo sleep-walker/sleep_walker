@@ -33,20 +33,23 @@ IUSE="emotion pam spell static-libs +udev ukit ${IUSE_E_MODULES}"
 
 RDEPEND="
 	pam? ( sys-libs/pam )
-	( >=dev-libs/eet-1.7.9
-	>=dev-libs/efreet-1.7.9
-	>=dev-libs/eio-1.7.9
-	>=dev-libs/eina-1.7.9[mempool-chained-pool]
-	|| ( >=dev-libs/ecore-1.7.9[X,evas,inotify] >=dev-libs/ecore-1.7.9[xcb,evas,inotify] )
-	>=media-libs/edje-1.7.9
 	>=dev-libs/e_dbus-1.7.9[libnotify,udev?]
 	ukit? ( >=dev-libs/e_dbus-1.7.9[udev] )
-	enlightenment_modules_connman? ( >=dev-libs/e_dbus-1.7.9[connman] )
-	enlightenment_modules_shot? ( >=dev-libs/ecore-1.7.9[curl] )
-	|| ( >=media-libs/evas-1.7.9[eet,X,jpeg,png] >=media-libs/evas-1.7.9[eet,xcb,jpeg,png] )
-	>=dev-libs/eeze-1.7.9
-	emotion? ( >=media-libs/emotion-1.7.9 )
-	) || >=dev-libs/efl-1.8.0)
+	|| (
+		(
+			>=dev-libs/eet-1.7.9
+			>=dev-libs/efreet-1.7.9
+			>=dev-libs/eio-1.7.9
+			>=dev-libs/eina-1.7.9[mempool-chained-pool]
+			|| ( >=dev-libs/ecore-1.7.9[X,evas,inotify] >=dev-libs/ecore-1.7.9[xcb,evas,inotify] )
+			>=media-libs/edje-1.7.9
+			enlightenment_modules_connman? ( >=dev-libs/e_dbus-1.7.9[connman] )
+			enlightenment_modules_shot? ( >=dev-libs/ecore-1.7.9[curl] )
+			|| ( >=media-libs/evas-1.7.9[eet,X,jpeg,png] >=media-libs/evas-1.7.9[eet,xcb,jpeg,png] )
+			>=dev-libs/eeze-1.7.9
+			emotion? ( >=media-libs/emotion-1.7.9 )
+		)
+		( >=dev-libs/efl-1.8.0 ) )
 	x11-libs/xcb-util-keysyms"
 DEPEND="${RDEPEND}"
 
