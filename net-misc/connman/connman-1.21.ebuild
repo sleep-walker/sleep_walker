@@ -12,7 +12,7 @@ SRC_URI="mirror://kernel/linux/network/${PN}/${P}.tar.xz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="amd64 arm ppc ppc64 x86"
-IUSE="bluetooth debug doc examples +ethernet ofono openvpn policykit tools vpnc +wifi"
+IUSE="bluetooth debug doc examples +ethernet ofono openvpn openconnect policykit tools vpnc +wifi"
 
 RDEPEND=">=dev-libs/glib-2.16
 	>=sys-apps/dbus-1.2.24
@@ -41,14 +41,14 @@ src_configure() {
 		$(use_enable wifi wifi builtin) \
 		$(use_enable bluetooth bluetooth builtin) \
 		$(use_enable ofono ofono builtin) \
+		$(use_enable openconnect openconnect builtin) \
 		$(use_enable openvpn openvpn builtin) \
 		$(use_enable policykit polkit builtin) \
 		$(use_enable vpnc vpnc builtin) \
 		$(use_enable debug) \
 		$(use_enable tools) \
 		--disable-iospm \
-		--disable-hh2serial-gps \
-		--disable-openconnect
+		--disable-hh2serial-gps
 }
 
 src_install() {
