@@ -26,8 +26,7 @@ RDEPEND=">=dev-libs/glib-2.16
 	wifi? ( >=net-wireless/wpa_supplicant-0.7[dbus] )"
 
 DEPEND="${RDEPEND}
-	>=sys-kernel/linux-headers-2.6.39
-	doc? ( dev-util/gtk-doc )"
+	>=sys-kernel/linux-headers-2.6.39"
 
 PATCHES=( "${FILESDIR}/${PN}-1.16-execinfo-assumptions.patch" )
 
@@ -46,7 +45,6 @@ src_configure() {
 		$(use_enable policykit polkit builtin) \
 		$(use_enable vpnc vpnc builtin) \
 		$(use_enable debug) \
-		$(use_enable doc gtk-doc) \
 		$(use_enable tools) \
 		--disable-iospm \
 		--disable-hh2serial-gps \
