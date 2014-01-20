@@ -55,7 +55,9 @@ src_install() {
 	emake DESTDIR="${D}" install
 	dobin client/connmanctl || die "client installation failed"
 
-	dodoc doc/*.txt
+	if use doc; then
+		dodoc doc/*.txt
+	fi
 	keepdir /var/lib/${PN}
 	newinitd "${FILESDIR}"/${PN}.initd2 ${PN}
 	newconfd "${FILESDIR}"/${PN}.confd ${PN}
