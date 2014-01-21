@@ -55,7 +55,7 @@ src_prepare() {
 
 src_compile() {
 	local myconf
-	myconf=" --with-sudo --with-nssdir=/usr/lib --enable-gcc-hardening --enable-linker-hardening"
+	myconf=" --with-sudo --with-nssdir=/usr/lib"
 	use mysql || myconf="${myconf} --without-mysql"
 	use postgres || myconf="${myconf} --without-postgres"
 	econf \
