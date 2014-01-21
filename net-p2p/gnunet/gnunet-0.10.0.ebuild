@@ -29,7 +29,7 @@ DEPEND=">=dev-libs/libgcrypt-1.6.0
 	mysql? ( >=virtual/mysql-5.1 )
 		sqlite? ( >=dev-db/sqlite-3.0.8 )
 	nls? ( sys-devel/gettext )
-	>=net-libs/libmicrohttpd-0.9.18
+	>=net-libs/libmicrohttpd-0.9.18[messages]
 	dev-libs/libunistring
 	>=sci-mathematics/glpk-4.45"
 
