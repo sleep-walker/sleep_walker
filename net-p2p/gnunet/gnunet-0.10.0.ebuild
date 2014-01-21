@@ -14,7 +14,7 @@ SRC_URI="http://ftp.gnu.org/gnu/gnunet/${PN}-${MY_PV}.tar.gz"
 #tests don't work
 RESTRICT="test"
 
-IUSE="mysql nls sqlite postgres"
+IUSE="mysql nls sqlite postgres conversation dane"
 KEYWORDS="~amd64 ~ppc ~ppc64 ~sparc ~x86"
 LICENSE="GPL-2"
 SLOT="0"
@@ -31,6 +31,9 @@ DEPEND=">=dev-libs/libgcrypt-1.6.0
 	nls? ( sys-devel/gettext )
 	>=net-libs/libmicrohttpd-0.9.18[messages]
 	dev-libs/libunistring
+	dane? ( net-libs/gnutls[dane] )
+	net-libs/gnutls
+	conversation? ( media-libs/opus )
 	>=sci-mathematics/glpk-4.45"
 
 pkg_setup() {
@@ -56,7 +59,7 @@ src_prepare() {
 
 src_compile() {
 	local myconf
-	myconf=" --with-sudo --with-nssdir=/usr/lib"
+	myconf=" --with-sudo=yes --with-nssdir=/usr/lib"
 	use mysql || myconf="${myconf} --without-mysql"
 	use postgres || myconf="${myconf} --without-postgres"
 	econf \
