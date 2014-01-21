@@ -4,7 +4,7 @@
 
 EAPI=2
 
-inherit eutils autotools
+inherit eutils autotools user
 
 MY_PV="${PV/_/}"
 
