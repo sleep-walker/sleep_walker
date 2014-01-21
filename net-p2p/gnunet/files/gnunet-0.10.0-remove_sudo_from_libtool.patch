@@ -1,0 +1,31 @@
+diff -up ./src/gns/nss/Makefile.am.orig ./src/gns/nss/Makefile.am
+--- ./src/gns/nss/Makefile.am.orig	2014-01-21 22:30:09.023813990 +0100
++++ ./src/gns/nss/Makefile.am	2014-01-21 22:30:24.126813724 +0100
+@@ -25,7 +25,7 @@ AM_LDFLAGS=-avoid-version -module -expor
+ 
+ nssdir = $(NSS_DIR)
+ 
+-LIBTOOL = $(SUDO_BINARY) $(SHELL) $(top_builddir)/libtool
++LIBTOOL = $(SHELL) $(top_builddir)/libtool
+ 
+ if !MINGW
+ if INSTALL_NSS
+@@ -61,4 +61,4 @@ uninstall-hook:
+ 	$(top_srcdir)/src/gns/nss/uninstall-nss-plugin.sh $(SHELL) $(top_builddir) "rm -f $(nssdir)/libnss_gns4.so.2" $(SUDO_BINARY)
+ 	$(top_srcdir)/src/gns/nss/uninstall-nss-plugin.sh $(SHELL) $(top_builddir) "rm -f $(nssdir)/libnss_gns6.so.2" $(SUDO_BINARY)
+ endif
+-endif
+\ Chybí znak konce řádku na konci souboru
++endif
+diff -up ./src/gns/nss/Makefile.in.orig ./src/gns/nss/Makefile.in
+--- ./src/gns/nss/Makefile.in.orig	2014-01-21 22:20:36.553150019 +0100
++++ ./src/gns/nss/Makefile.in	2014-01-21 22:20:48.906149802 +0100
+@@ -302,7 +302,7 @@ LIBINTL = @LIBINTL@
+ LIBOBJS = @LIBOBJS@
+ LIBPREFIX = @LIBPREFIX@
+ LIBS = @LIBS@
+-LIBTOOL = $(SUDO_BINARY) $(SHELL) $(top_builddir)/libtool
++LIBTOOL = $(SHELL) $(top_builddir)/libtool
+ LIBUNISTRING = @LIBUNISTRING@
+ LIPO = @LIPO@
+ LN_S = @LN_S@

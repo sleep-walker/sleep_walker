@@ -51,6 +51,7 @@ pkg_preinst() {
 src_prepare() {
 	sed -i 's:@GN_USER_HOME_DIR@:/etc:g' src/include/gnunet_directories.h.in
 	AT_M4DIR="${S}/m4" eautoreconf
+	epatch "${FILESDIR}"/${P}-remove_sudo_from_libtool.patch
 }
 
 src_compile() {
