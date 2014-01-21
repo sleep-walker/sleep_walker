@@ -14,7 +14,7 @@ SRC_URI="http://ftp.gnu.org/gnu/gnunet/${PN}-${MY_PV}.tar.gz"
 #tests don't work
 RESTRICT="test"
 
-IUSE="mysql nls sqlite postgres conversation dane"
+IUSE="mysql nls sqlite postgres +conversation +dane"
 KEYWORDS="~amd64 ~ppc ~ppc64 ~sparc ~x86"
 LICENSE="GPL-2"
 SLOT="0"
