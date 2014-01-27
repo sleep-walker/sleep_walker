@@ -129,7 +129,9 @@ src_configure() {
 src_install() {
 	default
 	find "${ED}" -name '*.la' -delete
-	rm -rf "${ED}"/usr/share/doc "${ED}"/usr/share/man
+	rm -rf "${ED}"/usr/share/doc "${ED}"/usr/share/man "${ED}"/usr/share/aclocal/libcurl.m4
+	rm "${ED}"/usr/bin/curl
+	rm "${ED}"/usr/include
 	rm -rf "${ED}"/etc/
 
 	# https://sourceforge.net/tracker/index.php?func=detail&aid=1705197&group_id=976&atid=350976
