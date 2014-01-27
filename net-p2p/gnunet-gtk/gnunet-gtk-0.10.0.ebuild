@@ -35,4 +35,5 @@ src_compile() {
 
 src_install() {
 	emake DESTDIR="${D}" install || die "emake install failed"
+	rm "${D}"/usr/share/doc/gnunet/{COPYING,README}
 }
