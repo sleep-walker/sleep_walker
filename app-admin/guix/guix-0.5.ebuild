@@ -6,8 +6,6 @@ EAPI=2
 
 inherit eutils autotools user
 
-MY_PV="${PV/_/}"
-
 GUILE_VERSION="2.0.9"
 DESCRIPTION="GNUnet is an anonymous, distributed, reputation based network."
 HOMEPAGE="http://www.gnu.org/software/guix/"
@@ -17,18 +15,17 @@ SRC_URI="
 	http://alpha.gnu.org/gnu/guix/bootstrap/mips64el-linux/20131110/guile-${GUILE_VERSION}.tar.xz -> guile-${GUILE_VERSION}-mips64el.tar.xz
 	http://alpha.gnu.org/gnu/guix/bootstrap/i686-linux/20131110/guile-${GUILE_VERSION}.tar.xz -> guile-${GUILE_VERSION}-i686.tar.xz
 "
-#tests don't work
-RESTRICT="test"
 
-#IUSE="mysql nls sqlite postgres +opus dane"
 IUSE="+build-daemon"
 KEYWORDS="~amd64 ~mips64el ~x86"
 
-
+# some tests fails due to too long path - tests/builders.scm, tests/packages.scm, tests/guix-package.sh
+# some fails due to sandbox - tests/builders.scm
+# local test works
+RESTRICT="test"
 
 LICENSE="GPL-2"
 SLOT="0"
-S="${WORKDIR}/${PN}-${MY_PV}"
 
 DEPEND="build-daemon? (
 			dev-db/sqlite:3
@@ -39,22 +36,18 @@ DEPEND="build-daemon? (
 		dev-libs/libgcrypt
 		>=dev-scheme/guile-2.0.5"
 
-#pkg_setup() {
-#
-#}
-
-#pkg_preinst() {
-#	enewgroup gnunetd
-#	enewuser gnunetd -1 -1 /dev/null gnunetd
-#}
+pkg_preinst() {
+	local i
+	enewgroup guix-builders
+	for i in {1..5}; do
+		enewuser "guix-builder$i" -1 -1 /dev/null guix-builders
+	done
+}
 
 src_prepare() {
-#	sed -i 's:@GN_USER_HOME_DIR@:/etc:g' src/include/gnunet_directories.h.in
-#	AT_M4DIR="${S}/m4" eautoreconf
-#	epatch "${FILESDIR}"/${P}-remove_sudo_from_libtool.patch
 	for arch in i686 x86_64 mips64el; do
 		mkdir -p "gnu/packages/bootstrap/${arch}-linux"
-		cp "${DISTDIR}/guile-${GUILE_VERSION}-${arch}.tar.xz" "gnu/packages/bootstrap/${arch}-linux/guile-${GUILE_VERSION}tar.xz"
+		cp "${DISTDIR}/guile-${GUILE_VERSION}-${arch}.tar.xz" "gnu/packages/bootstrap/${arch}-linux/guile-${GUILE_VERSION}.tar.xz"
 	done
 }
 
@@ -66,12 +59,7 @@ src_compile() {
 
 src_install() {
 	emake DESTDIR="${D}" install || die "make install failed"
-#	dodoc AUTHORS ChangeLog INSTALL NEWS README
-#	docinto contrib
-#	dodoc contrib/*
-#	newinitd "${FILESDIR}"/${PN}.initd-0.9.0v2 gnunet
-#	dodir /var/lib/gnunet
-#	chown gnunetd:gnunetd "${D}"/var/lib/gnunet
+	newinitd "${FILESDIR}/guixd-${PV}" guixd
 }
 
 pkg_postinst() {
