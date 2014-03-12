@@ -1,0 +1,22 @@
+diff -up task-2.3.0/CMakeLists.txt.orig task-2.3.0/CMakeLists.txt
+--- task-2.3.0/CMakeLists.txt.orig	2014-03-12 13:37:06.256164988 +0100
++++ task-2.3.0/CMakeLists.txt	2014-03-12 13:39:55.057176320 +0100
+@@ -9,6 +9,7 @@ set (HAVE_CMAKE true)
+ project (task)
+ set (PROJECT_VERSION "2.3.0")
+ 
++SET (TASK_RCDIR  share/task CACHE STRING "Installation directory for rc files")
+ if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+   set (LINUX true)
+ elseif (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+diff -up task-2.3.0/doc/CMakeLists.txt.orig task-2.3.0/doc/CMakeLists.txt
+--- task-2.3.0/doc/CMakeLists.txt.orig	2014-01-15 23:43:05.000000000 +0100
++++ task-2.3.0/doc/CMakeLists.txt	2014-03-12 13:39:55.057176320 +0100
+@@ -11,6 +11,6 @@ install (DIRECTORY ${CMAKE_CURRENT_BINAR
+                                                       FILES_MATCHING PATTERN "*.1")
+ install (DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/man/   DESTINATION ${TASK_MAN5DIR}
+                                                       FILES_MATCHING PATTERN "*.5")
+-install (DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/rc     DESTINATION ${TASK_DOCDIR})
++install (DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/rc     DESTINATION ${TASK_RCDIR})
+ 
+ install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/ref/task-ref.pdf DESTINATION ${TASK_DOCDIR})
