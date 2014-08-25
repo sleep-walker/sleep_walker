@@ -13,7 +13,7 @@ SRC_URI="http://dl.suckless.org/${PN}/${P}.tar.gz"
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="amd64 ppc ppc64 x86 ~x86-fbsd"
-IUSE="xinerama systray"
+IUSE="xinerama systray selfrestart"
 
 DEPEND="x11-libs/libX11
 	xinerama? (
@@ -25,6 +25,9 @@ RDEPEND="${DEPEND}"
 src_prepare() {
 	if use systray; then
 		epatch "${FILESDIR}"/${P}-systray.diff
+	fi
+	if use selfrestart; then
+		epatch "${FILESDIR}"/dwm-r1615-selfrestart.diff
 	fi
 	sed -i \
 		-e "s/CFLAGS = -std=c99 -pedantic -Wall -Os/CFLAGS += -std=c99 -pedantic -Wall/" \
