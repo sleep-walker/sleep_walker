@@ -30,7 +30,7 @@ src_prepare() {
 		epatch "${FILESDIR}"/dwm-r1615-selfrestart.diff
 	fi
 	sed -i \
-		-e "s/CFLAGS = -std=c99 -pedantic -Wall -Os/CFLAGS += -std=c99 -pedantic -Wall/" \
+		-e "s/CFLAGS = -std=c99 -pedantic -Wall -Os/CFLAGS += -std=c99 -pedantic -Wall -D_XOPEN_SOURCE=1000/" \
 		-e "/^LDFLAGS/{s|=|+=|g;s|-s ||g}" \
 		-e "s/#XINERAMALIBS =/XINERAMALIBS ?=/" \
 		-e "s/#XINERAMAFLAGS =/XINERAMAFLAGS ?=/" \
