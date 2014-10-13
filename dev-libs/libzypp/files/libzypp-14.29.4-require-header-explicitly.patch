@@ -1,0 +1,24 @@
+From 7d51808dd211a423cae959953659eae1637e4a38 Mon Sep 17 00:00:00 2001
+From: =?utf8?q?Tom=C3=A1=C5=A1=20=C4=8Cech?= <sleep_walker@suse.cz>
+Date: Mon, 13 Oct 2014 21:02:21 +0200
+Subject: [PATCH] Require header explicitly.
+
+---
+ zypp/ContentType.h | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/zypp/ContentType.h b/zypp/ContentType.h
+index 41a6b74..4254d06 100644
+--- a/zypp/ContentType.h
++++ b/zypp/ContentType.h
+@@ -13,6 +13,7 @@
+ 
+ #include <iosfwd>
+ #include <string>
++#include <stdexcept>
+ 
+ ///////////////////////////////////////////////////////////////////
+ namespace zypp
+-- 
+1.8.4.5
+
