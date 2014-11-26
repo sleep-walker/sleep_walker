@@ -1,0 +1,5 @@
+# name of group where guix builders would belong to
+GUIX_BUILDER_GROUP="guix-builders"
+
+# number of cores used for guix builders
+GUIX_BUILDER_CORES="0"

@@ -4,7 +4,7 @@
 
 EAPI=2
 
-inherit eutils autotools user
+inherit eutils autotools user systemd
 
 GUILE_VERSION="2.0.9"
 DESCRIPTION="GNUnet is an anonymous, distributed, reputation based network."
@@ -64,6 +64,8 @@ src_compile() {
 src_install() {
 	emake DESTDIR="${D}" install || die "make install failed"
 	newinitd "${FILESDIR}/guixd-${PV}" guixd
+	newconfd "${FILESDIR}/sysconfig.guix"
+	systemd_dounit "${FILESDIR}/guixd.service"
 }
 
 pkg_postinst() {

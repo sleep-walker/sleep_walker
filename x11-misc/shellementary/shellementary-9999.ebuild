@@ -10,7 +10,8 @@ RESTRICT_PYTHON_ABIS="3.*"
 
 ESVN_SUB_PROJECT="PROTO"
 
-inherit enlightenment
+KEYWORDS="~amd64"
+#inherit enlightenment
 
 DESCRIPTION="Tool to display Elementary dialogs from the command line and shell scripts"
 
