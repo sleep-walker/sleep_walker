@@ -29,14 +29,14 @@ DEPEND="build-daemon? (
 		)
 		app-arch/xz-utils
 		dev-libs/libgcrypt
-		>=dev-scheme/guile-2.0.5"
+		>=dev-scheme/guile-2.0.5[networking]"
 
 
 pkg_preinst() {
 	local i
 	enewgroup guix-builders
 	for i in {1..5}; do
-		enewuser "guix-builder$i" -1 -1 /dev/null guix-builders
+		enewuser "guix-builder$i" -1 -1 /dev/null guix-builders guix-builders
 	done
 }
 
@@ -57,6 +57,7 @@ src_prepare() {
 
 src_compile() {
 	econf \
+		--localstatedir="${EPREFIX}"/var \
 		$(use_enable build-daemon daemon) || die "econf failed"
 	emake -j1 || die "emake failed"
 }
