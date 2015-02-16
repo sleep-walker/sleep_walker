@@ -2,7 +2,7 @@
 Description=Guix build daemons
 
 [Service]
-Type=forking
+Type=simple
 PIDFile=/var/run/guixd.pid
 EnvironmentFile=/etc/conf.d/guix
 ExecStart=/usr/bin/guix-daemon --cores $GUIX_BUILDER_CORES --build-users-group $GUIX_BUILDER_GROUP 
